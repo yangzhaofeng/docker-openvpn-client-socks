@@ -1,13 +1,14 @@
 #!/bin/bash
 
-exec docker run \
+exec docker run -itd \
     --rm \
     --tty \
     --interactive \
     --device=/dev/net/tun \
-    --name=openvpn-client \
+    --name=ovpn-socks \
     --cap-add=NET_ADMIN \
     --publish 127.0.0.1:1081:1080 \
-    --volume "$(realpath "$1"):/etc/openvpn/:ro" \
+    --volume "/srv/docker/ovpn-socks/conf/:/etc/" \
+    --volume "/srv/docker/ovpn-socks/bin:/usr/local/bin/" \
     --sysctl net.ipv6.conf.all.disable_ipv6=0 \
-    kizzx2/openvpn-client-socks
+    openvpn-client-socks
