@@ -6,18 +6,17 @@
 # Note that the config must have embedded certs
 # See `start` in same repo for more ideas
 
-FROM alpine
+FROM debian:stretch
 
-#COPY sockd.sh /usr/local/bin/
+COPY sockd.sh /usr/local/bin/
 
-RUN true \
-    && echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
-    && apk add --update-cache dante-server openvpn bash openresolv openrc \
-    && rm -rf /var/cache/apk/* \
+RUN apt-get update \
+    && apt-get -y upgrade \
+    && apt-get -y install dante-server openvpn openresolv openrc \
+    && apt clean \
     && chmod a+x /usr/local/bin/sockd.sh \
-    && true
 
-#COPY sockd.conf /etc/
+COPY sockd.conf /etc/
 
 ENTRYPOINT [ \
     "/bin/bash", "-c", \
