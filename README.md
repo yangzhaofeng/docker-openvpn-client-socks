@@ -8,20 +8,17 @@ This supports directory style (where the certificates are not bundled together i
 
 ## Usage
 
-Preferably, using `start` in this repository:
-```bash
-start /your/openvpn/directory
-```
-
-`/your/openvpn/directory` should contain *one* OpenVPN `.conf` file. It can reference other certificate files or key files in the same directory.
-
-Alternatively, using `docker run` directly:
+using `docker run` directly:
 
 ```bash
-docker run -it --rm --device=/dev/net/tun --cap-add=NET_ADMIN \
-    --name openvpn-client \
-    --volume /your/openvpn/directory/:/etc/openvpn/:ro -p 1081:1080 \
-    kizzx2/openvpn-client-socks
+docker run -itd \
+        --device=/dev/net/tun \
+        --restart=always \
+        --name=ovpn-socks \
+        --cap-add=NET_ADMIN \
+        --publish 0.0.0.0:1081:1080 \
+        --volume "/srv/docker/ovpn-socks/:/etc/openvpn/:ro" \
+        yangzhaofengsteven/openvpn-socks
 ```
 
 Then connect to SOCKS proxy through through `local.docker:1081`. For example:
