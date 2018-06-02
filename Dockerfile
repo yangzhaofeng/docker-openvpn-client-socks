@@ -11,8 +11,7 @@ FROM debian:stretch
 COPY sockd.sh /usr/local/bin/
 
 RUN apt-get update \
-    && apt-get -y upgrade \
-    && apt-get -y install dante-server openvpn openresolv openrc \
+    && apt-get -y install socks4-server openvpn openresolv openrc \
     && apt clean \
     && chmod a+x /usr/local/bin/sockd.sh 
 
