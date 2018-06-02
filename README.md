@@ -17,7 +17,7 @@ docker run -itd \
         --name=ovpn-socks \
         --cap-add=NET_ADMIN \
         --publish 0.0.0.0:1081:1080 \
-        --volume "/srv/docker/ovpn-socks/:/etc/openvpn/:ro" \
+        --volume "your/openvpn/conf/path/:/etc/openvpn/:ro" \
         yangzhaofengsteven/openvpn-socks
 ```
 
