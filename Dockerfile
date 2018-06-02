@@ -15,7 +15,7 @@ RUN apt-get update \
     && apt clean \
     && chmod a+x /usr/local/bin/sockd.sh 
 
-COPY sockd.conf /etc/
+COPY danted.conf /etc/
 
 ENTRYPOINT [ \
     "/bin/bash", "-c", \
