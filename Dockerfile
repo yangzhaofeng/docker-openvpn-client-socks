@@ -14,7 +14,7 @@ RUN apt-get update \
     && apt-get -y upgrade \
     && apt-get -y install dante-server openvpn openresolv openrc \
     && apt clean \
-    && chmod a+x /usr/local/bin/sockd.sh \
+    && chmod a+x /usr/local/bin/sockd.sh 
 
 COPY sockd.conf /etc/
 
