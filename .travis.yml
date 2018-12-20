@@ -13,5 +13,5 @@ script:
   - set -e
   - docker build -t "$DOCKER_IMAGE" .
 after_success:
-  docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
-  docker push "$DOCKER_IMAGE:latest"
+  - docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
+  - docker push "$DOCKER_IMAGE:latest"
